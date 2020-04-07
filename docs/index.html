@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <title>カフェなんとか</title>
+  <link rel="icon" href="favicon.ico">
+
+  <link href="vendor/material-components-web.min.css" rel="stylesheet">
+  <script src="vendor/material-components-web.min.js"></script>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@inaniwa3">
+  <meta property="og:title" content="カフェなんとか">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inaniwa3.github.io/coffee-drinks/">
+  <meta property="og:image" content="https://inaniwa3.github.io/coffee-drinks/og.png">
+
+  <style>
+    body {
+      margin: 50vh auto 0;
+      transform: translateY(-50%);
+      text-align: center;
+    }
+    #coffee {
+      margin: 0;
+      font-size: 2.5em;
+      font-family: Roboto, sans-serif;
+    }
+    #ingredient {
+      display: inline-block;
+    }
+    .box {
+      margin: 1em;
+      padding: 0.5em 2em;
+      background: #f0f0f0;
+      border-radius: 10px;
+    }
+  </style>
+
+  <script>
+    const recipes = {
+      'ドリップ'                          : 'ドリップコーヒー',
+      'ドリップ+水'                       : 'アメリカン',
+      'ドリップ+ミルク'                   : 'カフェオレ',
+      'エスプレッソ'                      : 'エスプレッソ',
+      'エスプレッソ+水'                   : 'アメリカーノ',
+      'エスプレッソ+ミルク'               : 'カフェラテ', // +泡ミルク ?
+      'エスプレッソ+泡ミルク'             : 'マキアート',
+      'エスプレッソ+ミルク+泡ミルク'      : 'カプチーノ',
+      'エスプレッソ+ミルク+チョコシロップ': 'カフェモカ',
+    }; 
+    function clicked() {
+      let a = [];
+      document.querySelectorAll('input').forEach(function(e) {
+        if (e.checked) {
+          a.push(e.value);
+        }
+      });
+      let k = a.join("+");
+      let coffee = recipes[k] ? recipes[k] : '？';
+      document.getElementById('coffee').innerText = coffee;
+    };
+    window.onload = function() {
+      document.querySelectorAll('input').forEach(function(e) {
+        e.addEventListener("click", function() {
+          clicked();
+        });
+      });
+    };
+  </script>
+</head>
+<body>
+
+  <div id="coffee">ドリップコーヒー</div>
+
+  <div id="ingredient">
+
+    <div class="box">
+      <div class="mdc-form-field">
+        <div class="mdc-radio">
+          <input class="mdc-radio__native-control"
+                 type="radio" id="radio-1" name="radios" value="ドリップ" checked>
+          <div class="mdc-radio__background">
+            <div class="mdc-radio__outer-circle"></div>
+            <div class="mdc-radio__inner-circle"></div>
+          </div>
+          <div class="mdc-radio__ripple"></div>
+        </div>
+        <label for="radio-1">ドリップ</label>
+      </div>
+      <div class="mdc-form-field">
+        <div class="mdc-radio">
+          <input class="mdc-radio__native-control"
+                 type="radio" id="radio-2" name="radios" value="エスプレッソ">
+          <div class="mdc-radio__background">
+            <div class="mdc-radio__outer-circle"></div>
+            <div class="mdc-radio__inner-circle"></div>
+          </div>
+          <div class="mdc-radio__ripple"></div>
+        </div>
+        <label for="radio-2">エスプレッソ</label>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="mdc-form-field">
+        <div class="mdc-checkbox">
+          <input type="checkbox"
+                 class="mdc-checkbox__native-control"
+                 id="checkbox-1"
+                 value="水"/>
+          <div class="mdc-checkbox__background">
+            <svg class="mdc-checkbox__checkmark"
+                 viewBox="0 0 24 24">
+              <path class="mdc-checkbox__checkmark-path"
+                    fill="none"
+                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+            </svg>
+            <div class="mdc-checkbox__mixedmark"></div>
+          </div>
+          <div class="mdc-checkbox__ripple"></div>
+        </div>
+        <label for="checkbox-1">水</label>
+      </div>
+      <div class="mdc-form-field">
+        <div class="mdc-checkbox">
+          <input type="checkbox"
+                 class="mdc-checkbox__native-control"
+                 id="checkbox-2"
+                 value="ミルク"/>
+          <div class="mdc-checkbox__background">
+            <svg class="mdc-checkbox__checkmark"
+                 viewBox="0 0 24 24">
+              <path class="mdc-checkbox__checkmark-path"
+                    fill="none"
+                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+            </svg>
+            <div class="mdc-checkbox__mixedmark"></div>
+          </div>
+          <div class="mdc-checkbox__ripple"></div>
+        </div>
+        <label for="checkbox-2">ミルク</label>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="mdc-form-field">
+        <div class="mdc-checkbox">
+          <input type="checkbox"
+                 class="mdc-checkbox__native-control"
+                 id="checkbox-3"
+                 value="泡ミルク"/>
+          <div class="mdc-checkbox__background">
+            <svg class="mdc-checkbox__checkmark"
+                 viewBox="0 0 24 24">
+              <path class="mdc-checkbox__checkmark-path"
+                    fill="none"
+                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+            </svg>
+            <div class="mdc-checkbox__mixedmark"></div>
+          </div>
+          <div class="mdc-checkbox__ripple"></div>
+        </div>
+        <label for="checkbox-3">泡ミルク</label>
+      </div>
+      <div class="mdc-form-field">
+        <div class="mdc-checkbox">
+          <input type="checkbox"
+                 class="mdc-checkbox__native-control"
+                 id="checkbox-4"
+                 value="チョコシロップ"/>
+          <div class="mdc-checkbox__background">
+            <svg class="mdc-checkbox__checkmark"
+                 viewBox="0 0 24 24">
+              <path class="mdc-checkbox__checkmark-path"
+                    fill="none"
+                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+            </svg>
+            <div class="mdc-checkbox__mixedmark"></div>
+          </div>
+          <div class="mdc-checkbox__ripple"></div>
+        </div>
+        <label for="checkbox-4">チョコシロップ</label>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
